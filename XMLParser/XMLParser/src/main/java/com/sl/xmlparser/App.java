@@ -15,20 +15,20 @@ public class App {
 
     private static final ConfirurationParser parser = new ConfirurationParser(new Configuration());
 
-    private static final XmlParser xmlParser = new XmlParser();
+    private static final XmlParser xmlParser = new XmlParser(parser.getConfiguration());
     
     public static void main(String[] args) throws Exception {
         try {
-            URL testXml = Thread.currentThread().getContextClassLoader().getResource("test.xml");
+            URL testXml = Thread.currentThread().getContextClassLoader().getResource("generator.xml");
             
             Document document = xmlParser.parse(testXml);
             
-            Node cosignerNode = document.selectSingleNode("/Account/Cosigner");
-            System.out.println(cosignerNode.selectSingleNode("ContactInfo/Name").getText());
+//            Node cosignerNode = document.selectSingleNode("/Account/Cosigner");
+//            System.out.println(cosignerNode.selectSingleNode("ContactInfo/Name").getText());
             
             
             
-            new ImageResizer().resizeAndSave(new URI("https://www.google.pl/logos/2013/grandparents_day_2013-1014005-hp.png"), new File("./test.jpg"), 640, 480);
+//            new ImageResizer().resizeAndSave(new URI("https://www.google.pl/logos/2013/grandparents_day_2013-1014005-hp.png"), new File("./test.jpg"), 640, 480);
             
             parser.parseConfiguration(args);
             
