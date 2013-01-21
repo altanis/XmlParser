@@ -1,0 +1,12 @@
+<Account>
+    <Owner>
+        <ContactInfo>
+            <Name>Tom Jones</Name>
+        </ContactInfo>
+    </Owner>
+    <Cosigner>
+        <ContactInfo>
+            <Name>Jim Johnson</Name>
+        </ContactInfo>
+    </Cosigner>
+</Account>
