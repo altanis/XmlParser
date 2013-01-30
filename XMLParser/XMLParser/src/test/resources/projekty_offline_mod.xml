@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projekty data="2013-01-17T14:37:41+02:00" zrodlo="mtmstyl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="mtmstyl-projekty.xsd" > 
+	<projekt nr-kat="sopran_3_Y" data="2013-01-17T14:37:41+02:00" biuro="mtmstyl">
+		<nazwa>Sopran 3 (Y)</nazwa> <!-- nazwa projektu -->
+		<skrot> Wolno stojący dom jednorodzinny, niepodpiwniczony. Powiększona o dodatkowe stanowisko garażowe wersja domu –SOPRAN 2–. Dom ekonomiczny w budowie i utrzymaniu. Prosty, czytelny, funkcjonalny układ. Budynek można podpiwniczyć.</skrot> <!-- opis skrócony -->
+		<opis> Wolno stojący dom jednorodzinny, niepodpiwniczony. Powiększona o dodatkowe stanowisko garażowe wersja domu –SOPRAN 2–. Dom ekonomiczny w budowie i utrzymaniu. Prosty, czytelny, funkcjonalny układ. Budynek można podpiwniczyć.</opis> <!-- opis pełny -->
+		<technologia>Ściany: w systemie YTONG 36,5 cm, Stropy: żelbetowe, wylewane, Dach: dachówka, kąt nachylenia 45°</technologia>
+		<skonczony>tak</skonczony>
+		<kotlownia_na_paliwo_stale>nie</kotlownia_na_paliwo_stale>
+		<nowosc>nie</nowosc>
+		<wejscie_od_poludnia>nie</wejscie_od_poludnia>
+		<rodzaj_dachu>wielospadowy</rodzaj_dachu> <!-- rodzaj dachu -->
+		<energooszczednosc energooszczedny="nie">
+			<ep typ="ep_budynek_oceniany">107.540000915527</ep>
+			<ep typ="ep_budynek_nowy_wedlug_wymagan_wt2008">146.699996948242</ep>
+			<ep typ="ep_budynek_modernizowany_wedlug_wymagan_wt2008">168.710006713867</ep>
+			<ep typ="ek">92.6500015258789</ep>
+			<ep typ="pow_af_m2">195.5</ep>
+		</energooszczednosc>
+		<typ>wolnostojacy</typ>
+		<rodzaj>murowany</rodzaj><!-- technologia -->
+		<kategoria>jednorodzinny_z_uzytkowym_poddaszem</kategoria> <!-- kategoria -->
+		<kolekcja>tradycyjny </kolekcja>
+		<ilosc_stanowisk_garazowych>2</ilosc_stanowisk_garazowych> <!-- garaz -->
+		<powierzchnie uzytkowa="145.7"> <!-- 01. powierzchnia uzytkowa -->
+			<powierzchnia nazwa="calkowita">248.5</powierzchnia>
+			<powierzchnia nazwa="dachu">225</powierzchnia>
+			<powierzchnia nazwa="zabudowy">124</powierzchnia> <!-- 13.powierzchnia zabudowy -->
+		</powierzchnie>
+		<kubatura calkowita="690" /> <!-- 14.kubatura -->
+		<koszty calkowity="258325.00">
+			<koszt nazwa="fundamenty">37199.00</koszt>
+			<koszt nazwa="stan-surowy">163108.00</koszt>
+			<koszt nazwa="stolarka">17905.00</koszt>
+			<opis>Kosztorys dla budynku budowanego metodą gospodarczą. Poziom cen: Sekocenbud  IV kw 2011, dostawcy, producenci. Cena netto bez instalacji</opis>
+		</koszty>
+		<ceny vat="5" brutto="2520.00" /> <!-- cena z vat -->
+		<cena_kosztorysu vat="23" brutto="240.00" />
+		<kondygnacje>
+			<kondygnacja nazwa="parter" rzut="sopran_3_rz1.jpg"> <!-- rzut obrazek 1 --> <!-- kondygnacje -->
+				<pomieszczenia>
+					<pomieszczenie kategoria="inne" nazwa="wiatrołap" powierzchnia="1.8" />
+					<pomieszczenie kategoria="inne" nazwa="korytarz/komunikacja" powierzchnia="11.5" />
+					<pomieszczenie kategoria="jadalnia" nazwa="kuchnia/jadalnia" powierzchnia="14" />
+					<pomieszczenie kategoria="pokoj" nazwa="pokój" powierzchnia="28" />
+					<pomieszczenie kategoria="lazienka" nazwa="łazienka" powierzchnia="3.7" />
+					<pomieszczenie kategoria="inne" nazwa="pomieszczenie gospodarcze" powierzchnia="11.5" />
+					<pomieszczenie kategoria="garaz" nazwa="garaż" powierzchnia="29.4" />
+				</pomieszczenia>
+			</kondygnacja>
+			<kondygnacja nazwa="poddasze" rzut="sopran_3_rz2.jpg"> <!-- rzut obrazek 2 --> <!-- kondygnacje -->
+				<pomieszczenia>
+					<pomieszczenie kategoria="inne" nazwa="korytarz/komunikacja" powierzchnia="3" />
+					<pomieszczenie kategoria="lazienka" nazwa="łazienka" powierzchnia="7.1" />
+					<pomieszczenie kategoria="pokoj" nazwa="pokój" powierzchnia="10.2" />
+					<pomieszczenie kategoria="pokoj" nazwa="pokój" powierzchnia="12.9" />
+					<pomieszczenie kategoria="pokoj" nazwa="pokój" powierzchnia="13.7" />
+					<pomieszczenie kategoria="garderoba" nazwa="garderoba" powierzchnia="10.1" />
+					<pomieszczenie kategoria="inne" nazwa="strych" powierzchnia="18.2" />
+				</pomieszczenia>
+			</kondygnacja>
+		</kondygnacje>
+		<autorzy>
+			<autor id="arch. Tomasz Sobieszuk" />
+		</autorzy>
+		<podobne>
+			<podobny nr-kat="duet_Y"/>
+			<podobny nr-kat="duet_2_CE"/>
+		</podobne>
+		<wymiary>
+			<wymiar nazwa="szerokosc">13.39</wymiar>
+			<wymiar nazwa="dlugosc">12.34</wymiar>
+			<wymiar nazwa="wysokosc">8.5</wymiar> <!-- 15. wysokość budynku -->
+			<wymiar nazwa="min-szerokosc-dzialki">20.39</wymiar> <!-- 11.minimalne wymiary dzialki -->
+			<wymiar nazwa="min-dlugosc-dzialki">21.34</wymiar>   <!-- 11.minimalne wymiary dzialki -->
+			<wymiar nazwa="kat-dachu">45</wymiar> <!--16. kąt nachylenia dachu -->
+		</wymiary>
+		<inne>
+			<element>kominek</element>
+			<element nazwa="Z możliwością doprojektowania piwnicy ">tak</element>
+			<element nazwa="Z możliwością doprojektowania garażu" >nie</element>
+			<element nazwa="dodatkowe pomieszczenie (pokój na parterze, gabinet, sypialnia itp)">nie</element>
+			<element nazwa="Łatwa możliwość zbliźniaczenia budynku"  >tak</element>
+			<element nazwa="Dodatkowe pomieszczenie rekreacyjne (basen, oranżeria, siłownia)">tak</element>
+			<element nazwa="Możliwość dokupienia pakietu energooszczędnego">tak</element>
+			<element nazwa="Otwarta kuchnia">nie</element>
+			<element nazwa="Łazienka dostępna z sypialni">nie</element>
+			<element nazwa="Projekt posiada okna dachowe na poddaszu">tak</element>
+			<element nazwa="Projekt posiada zadaszony taras">nie</element>
+			<element nazwa="Projekt posiada wiatę garażową">nie</element>
+		</inne>
+		<zdjecia>
+			<zdjecie nazwa="teren" plik="sopran_3_sytuacja.jpg"></zdjecie> <!-- usytuowanie -->
+			<zdjecie nazwa="zdjecie" plik="sopran_3_duzy_0.jpg"></zdjecie> <!-- obrazki glowne -->
+			<zdjecie nazwa="zdjecie-tyl" plik="sopran_3_duzy_1.jpg"></zdjecie> <!-- obrazki glowne -->
+		</zdjecia>
+		<elewacje>
+			<elewacja nazwa="front" zdjecie="sopran_3_elewacja_1.jpg"/> <!-- elewacje -->
+			<elewacja nazwa="prawa" zdjecie="sopran_3_elewacja_2.jpg"/> <!-- elewacje -->
+			<elewacja nazwa="tyl" zdjecie="sopran_3_elewacja_3.jpg"/> <!-- elewacje -->
+			<elewacja nazwa="lewa" zdjecie="sopran_3_elewacja_4.jpg"/> <!-- elewacje -->
+		</elewacje>
+		<galeria>
+			<foto plik="sopran_3_obrot_01.jpg"/>
+			<foto plik="sopran_3_obrot_02.jpg"/>
+			<foto plik="sopran_3_obrot_03.jpg"/>
+			<foto plik="sopran_3_obrot_04.jpg"/>
+			<foto plik="sopran_3_obrot_05.jpg"/>
+			<foto plik="sopran_3_obrot_06.jpg"/>
+			<foto plik="sopran_3_obrot_07.jpg"/>
+			<foto plik="sopran_3_obrot_08.jpg"/>
+			<foto plik="sopran_3_obrot_09.jpg"/>
+			<foto plik="sopran_3_obrot_10.jpg"/>
+			<foto plik="sopran_3_obrot_11.jpg"/>
+			<foto plik="sopran_3_obrot_12.jpg"/>
+		</galeria>
+		<dokumentacja>
+			<dokument>czesc-architektoniczna</dokument>
+			<dokument>czesc-konstrukcyjna</dokument>
+		</dokumentacja>
+		<instalacje>
+			<instalacja>wodno-kanalizacyjna</instalacja>
+			<instalacja>centralne-ogrzewanie</instalacja>
+			<instalacja>gazowa</instalacja>
+			<instalacja>elektryczna</instalacja>
+		</instalacje>
+		<zmiany>
+			<zmiana>fundamenty</zmiana>
+			<zmiana>fundamenty2</zmiana>
+			<zmiana>elementy-nosne</zmiana>
+			<zmiana>uklad-warstw-scian</zmiana>
+			<zmiana>materialy</zmiana>
+			<zmiana>technologia</zmiana>
+			<zmiana>konstrukcja</zmiana>
+			<zmiana>zwierciadlo</zmiana>
+		</zmiany>
+	</projekt>
+</projekty>

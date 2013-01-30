@@ -21,7 +21,7 @@ public class App {
         try {
             URL testXml = Thread.currentThread().getContextClassLoader().getResource("generator.xml");
             
-            Document document = xmlParser.parse(testXml);
+            xmlParser.parse(testXml);
             
 //            Node cosignerNode = document.selectSingleNode("/Account/Cosigner");
 //            System.out.println(cosignerNode.selectSingleNode("ContactInfo/Name").getText());
