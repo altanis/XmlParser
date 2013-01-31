@@ -13,40 +13,55 @@ import java.util.Map;
 public class MtmModelDecorator {
 
     private enum FloorConfiguration {
+
         groundFloor,
         groundFloorWithAttic,
         storied
     }
-    
     private static final int SHORT_DESCRIPTION_MAX_LEN = 200;
     private static final Map<String, String> categoryMapping = new HashMap<String, String>();
     private static final Map<Integer, String> usableSpaceMapping = new LinkedHashMap<Integer, String>();
     private static final Map<String[], String> floorConfigurationMapping = new HashMap<String[], String>();
     private static final Map<Integer, String> garageMapping = new HashMap<Integer, String>();
     private static final Map<String, String> technologyMapping = new HashMap<String, String>();
-    
+    private static final Map<String, String> roofTypeMapping = new HashMap<String, String>();
+    private static final Map<Integer, String> minimumPlotMappingMapping = new LinkedHashMap<Integer, String>();
+
     static {
         categoryMapping.put("jednorodzinny_z_uzytkowym_poddaszem", "Projekty domów z poddaszem użytkowym");
         categoryMapping.put("jednorodzinny_dwukondygnacyjny", "Projekty domów piętrowych");
         categoryMapping.put("jednorodzinny_parterowy", "Projekty domów parterowych");
-        
+
         usableSpaceMapping.put(100, "do 100m2");
         usableSpaceMapping.put(130, "od 100m2 - 130m2");
         usableSpaceMapping.put(160, "od 130m2 - 160m2");
         usableSpaceMapping.put(9999, "powyżej 160m2");
         usableSpaceMapping.put(99999, "Possible error");
-        
+
         floorConfigurationMapping.put(new String[]{"parter"}, "Parterowe");
         floorConfigurationMapping.put(new String[]{"parter", "poddasze"}, "Parterowe z poddaszem");
         floorConfigurationMapping.put(new String[]{"parter", "pietro1"}, "Piętrowe");
-        
+
         garageMapping.put(0, "Brak");
         garageMapping.put(1, "Jednostanowiskowy");
         garageMapping.put(2, "Dwustanowiskowy");
-        
+
         technologyMapping.put("murowany", "Tradycyjna");
         technologyMapping.put("szkieletowy", "Szkieletowe");
         technologyMapping.put("bale", "Z bali");
+
+        roofTypeMapping.put("jednospadowy", "Jednospadowy");
+        roofTypeMapping.put("dwuspadowy", "Dwuspadowy");
+        roofTypeMapping.put("wielospadowy", "Wielospadowy");
+        roofTypeMapping.put("płaski", "Płaski");
+
+        minimumPlotMappingMapping.put(12, "do 12m");
+        minimumPlotMappingMapping.put(14, "do 14m");
+        minimumPlotMappingMapping.put(16, "do 16m");
+        minimumPlotMappingMapping.put(18, "do 18m");
+        minimumPlotMappingMapping.put(20, "do 20m");
+        minimumPlotMappingMapping.put(30, "do 30m");
+        minimumPlotMappingMapping.put(1000, "powyżej 30");
     }
 
     public static ProjectModel decorateModel(final ProjectModel model, final Configuration configuration) {
@@ -174,16 +189,16 @@ public class MtmModelDecorator {
             @Override
             public void setUsableSpace(String usableSpace) {
                 model.setUsableSpace(usableSpace);
-                if(model.getUsableSpace() != null) {
+                if (model.getUsableSpace() != null) {
                     int extractedUsableSpace2 = model.getUsableSpace().intValue();
-                    for(int compareValue : usableSpaceMapping.keySet()) {
+                    for (int compareValue : usableSpaceMapping.keySet()) {
                         //this will be LinkedHash Set, we know the order
-                        if(extractedUsableSpace2 < compareValue) {
+                        if (extractedUsableSpace2 < compareValue) {
                             model.setUsableSpace2(usableSpaceMapping.get(compareValue));
                             break;
                         }
                     }
-                }                
+                }
             }
 
             @Override
@@ -203,21 +218,21 @@ public class MtmModelDecorator {
 
             @Override
             public void setFloors(String floors) {
-                if(floors != null && !floors.isEmpty()) {
-                    String [] splittedFloors = floors.trim().split(",");
-                    
+                if (floors != null && !floors.isEmpty()) {
+                    String[] splittedFloors = floors.trim().split(",");
+
                     boolean found = false;
-                    
-                    for(String[] floorKeys : floorConfigurationMapping.keySet()) {
-                       if(Arrays.equals(floorKeys, splittedFloors)) {
-                           model.setFloors(floorConfigurationMapping.get(floorKeys));
-                           model.setFloors2(floorConfigurationMapping.get(floorKeys));
-                           found = true;
-                           break;
-                       }
+
+                    for (String[] floorKeys : floorConfigurationMapping.keySet()) {
+                        if (Arrays.equals(floorKeys, splittedFloors)) {
+                            model.setFloors(floorConfigurationMapping.get(floorKeys));
+                            model.setFloors2(floorConfigurationMapping.get(floorKeys));
+                            found = true;
+                            break;
+                        }
                     }
-                    
-                    if(!found) {
+
+                    if (!found) {
                         model.setFloors(Arrays.toString(splittedFloors));
                         model.setFloors2(Arrays.toString(splittedFloors));
                     }
@@ -241,7 +256,7 @@ public class MtmModelDecorator {
 
             @Override
             public void setGarage(String garage) {
-                if(garage != null && !garage.isEmpty()) {
+                if (garage != null && !garage.isEmpty()) {
                     Integer numberOfGarages = Integer.valueOf(garage);
                     model.setGarage(garageMapping.get(numberOfGarages));
                     model.setGarage2(garageMapping.get(numberOfGarages));
@@ -265,7 +280,7 @@ public class MtmModelDecorator {
 
             @Override
             public void setTechnology(String technology) {
-                if(technology != null && !technology.isEmpty()) {
+                if (technology != null && !technology.isEmpty()) {
                     model.setTechnology(technologyMapping.get(technology));
                     model.setTechnology2(technologyMapping.get(technology));
                 }
@@ -278,7 +293,10 @@ public class MtmModelDecorator {
 
             @Override
             public void setRoofType(String roofType) {
-                model.setRoofType(roofType);
+                if (roofType != null && !roofType.isEmpty()) {
+                    model.setRoofType(roofTypeMapping.get(roofType));
+                    model.setRoofType2(roofTypeMapping.get(roofType));
+                }
             }
 
             @Override
@@ -298,7 +316,24 @@ public class MtmModelDecorator {
 
             @Override
             public void setMinimumPlot(String minimumPlot) {
-                model.setMinimumPlot(minimumPlot);
+                if (minimumPlot != null && !minimumPlot.isEmpty()) {
+                    String[] splittedPlot = minimumPlot.trim().split("\\s*x\\s*");
+                    if (splittedPlot.length == 2) {
+                        int a = Integer.valueOf(new BigDecimal(splittedPlot[0]).intValue());
+                        int b = Integer.valueOf(new BigDecimal(splittedPlot[1]).intValue());
+                        int c = Math.max(a, b);
+
+                        for (int compareValue : minimumPlotMappingMapping.keySet()) {
+                            //this will be LinkedHash Set, we know the order
+                            if (c < compareValue) {
+                                model.setMinimumPlot2(minimumPlotMappingMapping.get(compareValue));
+                                break;
+                            }
+                        }
+                    }
+
+                    model.setMinimumPlot(minimumPlot);
+                }
             }
 
             @Override
@@ -392,7 +427,6 @@ public class MtmModelDecorator {
             public boolean equals(Object obj) {
                 return model.equals(obj);
             }
-            
         };
     }
 }

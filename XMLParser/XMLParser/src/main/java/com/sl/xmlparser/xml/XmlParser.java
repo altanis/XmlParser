@@ -47,7 +47,13 @@ public class XmlParser {
             model.setFloors(projectNode.valueOf(configuration.getFloorsXPath()));
             model.setGarage(projectNode.valueOf(configuration.getGarageXPath()));
             model.setTechnology(projectNode.valueOf(configuration.getTechnologyXPath()));
-
+            model.setRoofType(projectNode.valueOf(configuration.getRoofTypeXPath()));
+            model.setMinimumPlot(projectNode.valueOf(configuration.getMinimumPlotXPath()));            
+            model.setBuildInArea(projectNode.valueOf(configuration.getBuiltInAreaXPath()));
+            model.setVolume(projectNode.valueOf(configuration.getVolumeXPath()));
+            model.setBuildingHeight(projectNode.valueOf(configuration.getBuildingHeightXPath()));
+            model.setSlopeOfTheRoof(projectNode.valueOf(configuration.getSlopeOfTheRoofXPath()));
+            
             parsedModels.add(model);
             System.out.println("Project = " + model);
         }
