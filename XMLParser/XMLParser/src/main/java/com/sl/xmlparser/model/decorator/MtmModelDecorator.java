@@ -78,7 +78,7 @@ public class MtmModelDecorator {
 
             @Override
             public void setProjectName(String projectName) {
-                model.setProjectName(projectName);
+                model.setProjectName(projectName.trim());
             }
 
             @Override
@@ -88,7 +88,7 @@ public class MtmModelDecorator {
 
             @Override
             public void setFullDescription(String fullDescription) {
-                model.setFullDescription(fullDescription);
+                model.setFullDescription(fullDescription.trim());
             }
 
             @Override
@@ -277,6 +277,11 @@ public class MtmModelDecorator {
             public String getTechnology() {
                 return model.getTechnology();
             }
+            
+            @Override
+            public String getTechnology2() {
+                return model.getTechnology2();
+            }
 
             @Override
             public void setTechnology(String technology) {
@@ -317,7 +322,7 @@ public class MtmModelDecorator {
             @Override
             public void setMinimumPlot(String minimumPlot) {
                 if (minimumPlot != null && !minimumPlot.isEmpty()) {
-                    String[] splittedPlot = minimumPlot.trim().split("\\s*x\\s*");
+                    String[] splittedPlot = minimumPlot.replaceAll("[a-zA-Z&&[^x]]","").trim().split("\\s*x\\s*");
                     if (splittedPlot.length == 2) {
                         int a = Integer.valueOf(new BigDecimal(splittedPlot[0]).intValue());
                         int b = Integer.valueOf(new BigDecimal(splittedPlot[1]).intValue());
@@ -399,7 +404,7 @@ public class MtmModelDecorator {
             @Override
             public void setShortDescription(String shortDescription) {
                 if (shortDescription.length() > SHORT_DESCRIPTION_MAX_LEN) {
-                    shortDescription = shortDescription.substring(0, SHORT_DESCRIPTION_MAX_LEN);
+                    shortDescription = shortDescription.trim().substring(0, SHORT_DESCRIPTION_MAX_LEN);
                 }
                 model.setShortDescription(shortDescription);
             }

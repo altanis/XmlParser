@@ -53,7 +53,7 @@ public class Configuration {
     private String roofTypeXPath = "rodzaj_dachu";
     
     @Option(name = "--xml-minimum-plot")
-    private String minimumPlotXPath = "concat(wymiary/wymiar[@nazwa='min-szerokosc-dzialki'], ' x ', wymiary/wymiar[@nazwa='min-dlugosc-dzialki'])";
+    private String minimumPlotXPath = "concat(wymiary/wymiar[@nazwa='min-szerokosc-dzialki'], ' x ', wymiary/wymiar[@nazwa='min-dlugosc-dzialki'], ' m')";
     
     @Option(name = "--xml-built-in-area")
     private String builtInAreaXPath = "concat(powierzchnie/powierzchnia[@nazwa='zabudowy'], ' m2')";
@@ -65,7 +65,7 @@ public class Configuration {
     private String buildingHeightXPath = "concat(wymiary/wymiar[@nazwa='wysokosc'], ' m')";
     
     @Option(name = "--xml-slope-of-the-roof")
-    private String slopeOfTheRoofXPath = "concat(wymiary/wymiar[@nazwa='kat-dachu'], ' °')";
+    private String slopeOfTheRoofXPath = "concat(wymiary/wymiar[@nazwa='kat-dachu'], '°')";
     
     @Option(name = "--xml-basement")
     private String basementXPath;
