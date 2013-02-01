@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MtmModelDecorator {
@@ -132,43 +133,43 @@ public class MtmModelDecorator {
             }
 
             @Override
-            public URI[] getImgMain() {
+            public List<String> getImgMain() {
                 return model.getImgMain();
             }
 
             @Override
-            public void setImgMain(URI[] imgMain) {
-                model.setImgMain(imgMain);
+            public void addImgMain(String imgMain) {
+                model.addImgMain(imgMain);
             }
 
             @Override
-            public URI[] getImgProjection() {
+            public List<String> getImgProjection() {
                 return model.getImgProjection();
             }
 
             @Override
-            public void setImgProjection(URI[] imgProjection) {
-                model.setImgProjection(imgProjection);
+            public void addImgProjection(String imgProjection) {
+                model.addImgProjection(imgProjection);
             }
 
             @Override
-            public URI[] getImgElevation() {
+            public List<String> getImgElevation() {
                 return model.getImgElevation();
             }
 
             @Override
-            public void setImgElevation(URI[] imgElevation) {
-                model.setImgElevation(imgElevation);
+            public void addImgElevation(String imgElevation) {
+                model.addImgElevation(imgElevation);
             }
 
             @Override
-            public URI[] getImgLocation() {
+            public List<String> getImgLocation() {
                 return model.getImgLocation();
             }
 
             @Override
-            public void setImgLocation(URI[] imgLocation) {
-                model.setImgLocation(imgLocation);
+            public void addImgLocation(String imgLocation) {
+                model.addImgLocation(imgLocation);
             }
 
             @Override

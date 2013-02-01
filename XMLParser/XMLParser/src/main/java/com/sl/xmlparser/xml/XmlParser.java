@@ -39,10 +39,23 @@ public class XmlParser {
             model.setFullDescription(projectNode.valueOf(configuration.getFullDescriptionXPath()));
             model.setCategory(projectNode.valueOf(configuration.getCategoryXPath()));
             model.setPriceWithVat(projectNode.valueOf(configuration.getPriceWithVatXPath()));
-            model.setImgMain(getUri(projectNode, configuration.getImgMainXPath(), configuration.getUriPrefixConstant()).toArray(new URI[0]));
-            model.setImgElevation(getUri(projectNode, configuration.getImgElevationXPath(), configuration.getUriPrefixConstant()).toArray(new URI[0]));
-            model.setImgProjection(getUri(projectNode, configuration.getImgProjectionXPath(), configuration.getUriPrefixConstant()).toArray(new URI[0]));
-            model.setImgLocation(getUri(projectNode, configuration.getImgLocationXPath(), configuration.getUriPrefixConstant()).toArray(new URI[0]));
+            
+            for(Object n : projectNode.selectNodes(configuration.getImgMainXPath())) {
+                model.addImgMain(((Node)n).getText());
+            }
+            
+            for(Object n : projectNode.selectNodes(configuration.getImgElevationXPath())) {
+                model.addImgElevation(((Node)n).getText());
+            }
+            
+            for(Object n : projectNode.selectNodes(configuration.getImgProjectionXPath())) {
+                model.addImgProjection(((Node)n).getText());
+            }
+            
+            for(Object n : projectNode.selectNodes(configuration.getImgLocationXPath())) {
+                model.addImgLocation(((Node)n).getText());
+            }
+            
             model.setUsableSpace(projectNode.valueOf(configuration.getUsableSpaceXPath()));
             model.setFloors(projectNode.valueOf(configuration.getFloorsXPath()));
             model.setGarage(projectNode.valueOf(configuration.getGarageXPath()));

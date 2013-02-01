@@ -7,6 +7,9 @@ import org.kohsuke.args4j.Option;
 
 public class Configuration {
     
+    @Argument(index = 1)
+    private List<String> arguments = new ArrayList<String>();
+    
     @Option(name = "--xml-main-element")
     private String mainXmlElementXPath = "/projekty/projekt";
     
@@ -76,12 +79,54 @@ public class Configuration {
     @Option(name = "--constant-active")
     private Integer active = 1;
     
-    @Option(name = "--constant-img-uri-prefix")
-    private String uriPrefixConstant = "http://localhost/";
-    
-    @Argument
-    private List<String> arguments = new ArrayList<String>();
+    @Option(name = "--constant-img-uri-template")
+    private String uriPrefixConstant = "http://localhost/%s";
 
+    @Option(name = "--constant-img-link-template")
+    private String imgLinkTemplateConstant = "<img src=\"%s\" alt=\"\" />";
+    
+    @Option(name = "--output-directory")
+    private String outputDirectory = ".";
+    
+    @Option(name = "--output-csv-name")
+    private String outputCsvName = "index.csv";
+
+    @Argument(index = 0, required = true)
+    private String inputXmlFile;
+
+    public String getInputXmlFile() {
+        return inputXmlFile;
+    }
+
+    public void setInputXmlFile(String inputXmlFile) {
+        this.inputXmlFile = inputXmlFile;
+    }
+    
+    public String getOutputCsvName() {
+        return outputCsvName;
+    }
+
+    public void setOutputCsvName(String outputCsvName) {
+        this.outputCsvName = outputCsvName;
+    }
+
+    
+    public String getOutputDirectory() {
+        return outputDirectory;
+    }
+
+    public void setOutputDirectory(String outputDirectory) {
+        this.outputDirectory = outputDirectory;
+    }
+
+    public String getImgLinkTemplateConstant() {
+        return imgLinkTemplateConstant;
+    }
+
+    public void setImgLinkTemplateConstant(String imgLinkTemplateConstant) {
+        this.imgLinkTemplateConstant = imgLinkTemplateConstant;
+    }
+    
     public String getMainXmlElementXPath() {
         return mainXmlElementXPath;
     }

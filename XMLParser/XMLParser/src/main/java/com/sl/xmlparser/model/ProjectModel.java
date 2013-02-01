@@ -1,9 +1,8 @@
 package com.sl.xmlparser.model;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.net.URI;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProjectModel {
 
@@ -14,10 +13,10 @@ public class ProjectModel {
     protected String categoryForSearcher;
     protected BigDecimal priceWithVat;
     protected Integer Amount;
-    protected URI[] imgMain;
-    protected URI[] imgProjection;
-    protected URI[] imgElevation;
-    protected URI[] imgLocation;
+    protected List<String> imgMain = new ArrayList<String>();
+    protected List<String> imgProjection = new ArrayList<String>();
+    protected List<String> imgElevation = new ArrayList<String>();
+    protected List<String> imgLocation = new ArrayList<String>();
     protected Integer active;
     protected BigDecimal usableSpace;
     protected String usableSpace2;
@@ -95,36 +94,36 @@ public class ProjectModel {
         this.Amount = Amount;
     }
 
-    public URI[] getImgMain() {
+    public List<String> getImgMain() {
         return imgMain;
     }
 
-    public void setImgMain(URI[] imgMain) {
-        this.imgMain = imgMain;
+    public void addImgMain(String imgMain) {
+        this.imgMain.add(imgMain);
     }
 
-    public URI[] getImgProjection() {
+    public List<String> getImgProjection() {
         return imgProjection;
     }
 
-    public void setImgProjection(URI[] imgProjection) {
-        this.imgProjection = imgProjection;
+    public void addImgProjection(String imgProjection) {
+        this.imgProjection.add(imgProjection);
     }
 
-    public URI[] getImgElevation() {
+    public List<String> getImgElevation() {
         return imgElevation;
     }
 
-    public void setImgElevation(URI[] imgElevation) {
-        this.imgElevation = imgElevation;
+    public void addImgElevation(String imgElevation) {
+        this.imgElevation.add(imgElevation);
     }
 
-    public URI[] getImgLocation() {
+    public List<String> getImgLocation() {
         return imgLocation;
     }
 
-    public void setImgLocation(URI[] imgLocation) {
-        this.imgLocation = imgLocation;
+    public void addImgLocation(String imgLocation) {
+        this.imgLocation.add(imgLocation);
     }
 
     public Integer getActive() {
@@ -274,42 +273,37 @@ public class ProjectModel {
     }
 
     @Override
-    public String toString() {
-        return "ProjectModel{" + "projectName=" + projectName + "\n\t fullDescription=" + fullDescription + "\n\t shortDescription=" + shortDescription + "\n\t category=" + category + "\n\t categoryForSearcher=" + categoryForSearcher + "\n\t priceWithVat=" + priceWithVat + "\n\t Amount=" + Amount + "\n\t imgMain=" + Arrays.toString(imgMain) + "\n\t imgProjection=" + Arrays.toString(imgProjection) + "\n\t imgElevation=" + Arrays.toString(imgElevation) + "\n\t imgLocation=" + Arrays.toString(imgLocation) + "\n\t active=" + active + "\n\t usableSpace=" + usableSpace + "\n\t usableSpace2=" + usableSpace2 + "\n\t floors=" + floors + "\n\t floors2=" + floors2 + "\n\t garage=" + garage + "\n\t garage2=" + garage2 + "\n\t technology=" + technology + "\n\t technology2=" + technology2 + "\n\t roofType=" + roofType + "\n\t roofType2=" + roofType2 + "\n\t minimumPlot=" + minimumPlot + "\n\t minimumPlot2=" + minimumPlot2 + "\n\t buildInArea=" + buildInArea + "\n\t volume=" + volume + "\n\t buildingHeight=" + buildingHeight + "\n\t slopeOfTheRoof=" + slopeOfTheRoof + "\n\t basement=" + basement + '}';
-    }
-
-    @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + (this.projectName != null ? this.projectName.hashCode() : 0);
-        hash = 59 * hash + (this.fullDescription != null ? this.fullDescription.hashCode() : 0);
-        hash = 59 * hash + (this.shortDescription != null ? this.shortDescription.hashCode() : 0);
-        hash = 59 * hash + (this.category != null ? this.category.hashCode() : 0);
-        hash = 59 * hash + (this.categoryForSearcher != null ? this.categoryForSearcher.hashCode() : 0);
-        hash = 59 * hash + (this.priceWithVat != null ? this.priceWithVat.hashCode() : 0);
-        hash = 59 * hash + (this.Amount != null ? this.Amount.hashCode() : 0);
-        hash = 59 * hash + Arrays.deepHashCode(this.imgMain);
-        hash = 59 * hash + Arrays.deepHashCode(this.imgProjection);
-        hash = 59 * hash + Arrays.deepHashCode(this.imgElevation);
-        hash = 59 * hash + Arrays.deepHashCode(this.imgLocation);
-        hash = 59 * hash + (this.active != null ? this.active.hashCode() : 0);
-        hash = 59 * hash + (this.usableSpace != null ? this.usableSpace.hashCode() : 0);
-        hash = 59 * hash + (this.usableSpace2 != null ? this.usableSpace2.hashCode() : 0);
-        hash = 59 * hash + (this.floors != null ? this.floors.hashCode() : 0);
-        hash = 59 * hash + (this.floors2 != null ? this.floors2.hashCode() : 0);
-        hash = 59 * hash + (this.garage != null ? this.garage.hashCode() : 0);
-        hash = 59 * hash + (this.garage2 != null ? this.garage2.hashCode() : 0);
-        hash = 59 * hash + (this.technology != null ? this.technology.hashCode() : 0);
-        hash = 59 * hash + (this.technology2 != null ? this.technology2.hashCode() : 0);
-        hash = 59 * hash + (this.roofType != null ? this.roofType.hashCode() : 0);
-        hash = 59 * hash + (this.roofType2 != null ? this.roofType2.hashCode() : 0);
-        hash = 59 * hash + (this.minimumPlot != null ? this.minimumPlot.hashCode() : 0);
-        hash = 59 * hash + (this.minimumPlot2 != null ? this.minimumPlot2.hashCode() : 0);
-        hash = 59 * hash + (this.buildInArea != null ? this.buildInArea.hashCode() : 0);
-        hash = 59 * hash + (this.volume != null ? this.volume.hashCode() : 0);
-        hash = 59 * hash + (this.buildingHeight != null ? this.buildingHeight.hashCode() : 0);
-        hash = 59 * hash + (this.slopeOfTheRoof != null ? this.slopeOfTheRoof.hashCode() : 0);
-        hash = 59 * hash + (this.basement != null ? this.basement.hashCode() : 0);
+        int hash = 7;
+        hash = 17 * hash + (this.projectName != null ? this.projectName.hashCode() : 0);
+        hash = 17 * hash + (this.fullDescription != null ? this.fullDescription.hashCode() : 0);
+        hash = 17 * hash + (this.shortDescription != null ? this.shortDescription.hashCode() : 0);
+        hash = 17 * hash + (this.category != null ? this.category.hashCode() : 0);
+        hash = 17 * hash + (this.categoryForSearcher != null ? this.categoryForSearcher.hashCode() : 0);
+        hash = 17 * hash + (this.priceWithVat != null ? this.priceWithVat.hashCode() : 0);
+        hash = 17 * hash + (this.Amount != null ? this.Amount.hashCode() : 0);
+        hash = 17 * hash + (this.imgMain != null ? this.imgMain.hashCode() : 0);
+        hash = 17 * hash + (this.imgProjection != null ? this.imgProjection.hashCode() : 0);
+        hash = 17 * hash + (this.imgElevation != null ? this.imgElevation.hashCode() : 0);
+        hash = 17 * hash + (this.imgLocation != null ? this.imgLocation.hashCode() : 0);
+        hash = 17 * hash + (this.active != null ? this.active.hashCode() : 0);
+        hash = 17 * hash + (this.usableSpace != null ? this.usableSpace.hashCode() : 0);
+        hash = 17 * hash + (this.usableSpace2 != null ? this.usableSpace2.hashCode() : 0);
+        hash = 17 * hash + (this.floors != null ? this.floors.hashCode() : 0);
+        hash = 17 * hash + (this.floors2 != null ? this.floors2.hashCode() : 0);
+        hash = 17 * hash + (this.garage != null ? this.garage.hashCode() : 0);
+        hash = 17 * hash + (this.garage2 != null ? this.garage2.hashCode() : 0);
+        hash = 17 * hash + (this.technology != null ? this.technology.hashCode() : 0);
+        hash = 17 * hash + (this.technology2 != null ? this.technology2.hashCode() : 0);
+        hash = 17 * hash + (this.roofType != null ? this.roofType.hashCode() : 0);
+        hash = 17 * hash + (this.roofType2 != null ? this.roofType2.hashCode() : 0);
+        hash = 17 * hash + (this.minimumPlot != null ? this.minimumPlot.hashCode() : 0);
+        hash = 17 * hash + (this.minimumPlot2 != null ? this.minimumPlot2.hashCode() : 0);
+        hash = 17 * hash + (this.buildInArea != null ? this.buildInArea.hashCode() : 0);
+        hash = 17 * hash + (this.volume != null ? this.volume.hashCode() : 0);
+        hash = 17 * hash + (this.buildingHeight != null ? this.buildingHeight.hashCode() : 0);
+        hash = 17 * hash + (this.slopeOfTheRoof != null ? this.slopeOfTheRoof.hashCode() : 0);
+        hash = 17 * hash + (this.basement != null ? this.basement.hashCode() : 0);
         return hash;
     }
 
@@ -343,22 +337,22 @@ public class ProjectModel {
         if (this.Amount != other.Amount && (this.Amount == null || !this.Amount.equals(other.Amount))) {
             return false;
         }
-        if (!Arrays.deepEquals(this.imgMain, other.imgMain)) {
+        if (this.imgMain != other.imgMain && (this.imgMain == null || !this.imgMain.equals(other.imgMain))) {
             return false;
         }
-        if (!Arrays.deepEquals(this.imgProjection, other.imgProjection)) {
+        if (this.imgProjection != other.imgProjection && (this.imgProjection == null || !this.imgProjection.equals(other.imgProjection))) {
             return false;
         }
-        if (!Arrays.deepEquals(this.imgElevation, other.imgElevation)) {
+        if (this.imgElevation != other.imgElevation && (this.imgElevation == null || !this.imgElevation.equals(other.imgElevation))) {
             return false;
         }
-        if (!Arrays.deepEquals(this.imgLocation, other.imgLocation)) {
+        if (this.imgLocation != other.imgLocation && (this.imgLocation == null || !this.imgLocation.equals(other.imgLocation))) {
             return false;
         }
         if (this.active != other.active && (this.active == null || !this.active.equals(other.active))) {
             return false;
         }
-        if ((this.usableSpace == null) ? (other.usableSpace != null) : !this.usableSpace.equals(other.usableSpace)) {
+        if (this.usableSpace != other.usableSpace && (this.usableSpace == null || !this.usableSpace.equals(other.usableSpace))) {
             return false;
         }
         if ((this.usableSpace2 == null) ? (other.usableSpace2 != null) : !this.usableSpace2.equals(other.usableSpace2)) {
@@ -411,6 +405,9 @@ public class ProjectModel {
         }
         return true;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "ProjectModel{" + "projectName=" + projectName + ", fullDescription=" + fullDescription + ", shortDescription=" + shortDescription + ", category=" + category + ", categoryForSearcher=" + categoryForSearcher + ", priceWithVat=" + priceWithVat + ", Amount=" + Amount + ", imgMain=" + imgMain + ", imgProjection=" + imgProjection + ", imgElevation=" + imgElevation + ", imgLocation=" + imgLocation + ", active=" + active + ", usableSpace=" + usableSpace + ", usableSpace2=" + usableSpace2 + ", floors=" + floors + ", floors2=" + floors2 + ", garage=" + garage + ", garage2=" + garage2 + ", technology=" + technology + ", technology2=" + technology2 + ", roofType=" + roofType + ", roofType2=" + roofType2 + ", minimumPlot=" + minimumPlot + ", minimumPlot2=" + minimumPlot2 + ", buildInArea=" + buildInArea + ", volume=" + volume + ", buildingHeight=" + buildingHeight + ", slopeOfTheRoof=" + slopeOfTheRoof + ", basement=" + basement + '}';
+    }
 }
