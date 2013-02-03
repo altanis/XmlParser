@@ -1,0 +1,34 @@
+1. Uruchomienie
+
+Odpalacie poprzez ./run.sh
+
+W run.sh kilka pierwszych linii jest odpowiedzialnych za parametry wejściowe:
+[Plik XML podanym jako URI (może być z netu)] "file:///home/slaskawiec/work/PRZEMEK/src/git/XMLParser/Package/xml/projekty_offline_mod_fixed.xml"\
+[Katalog z wynikiem]" --output-directory ./output"\
+[Nazwa pliku CSV] " --output-csv-name index.csv"\
+[Template nazwy pliku. Za %s podstawiany jest fragment z XML] " --constant-img-main-uri-template ./images/wizualizacje/%s"\
+[Template nazwy pliku. Za %s podstawiany jest fragment z XML] " --constant-img-location-uri-template ./images/usytuowanie/%s"\
+[Template nazwy pliku. Za %s podstawiany jest fragment z XML] " --constant-img-projection-uri-template ./images/rzuty/%s"\
+[Template nazwy pliku. Za %s podstawiany jest fragment z XML] " --constant-img-elevation-uri-template ./images/elewacje/%s"\
+[Szerokość pliku wynikowego] " --output-img-width 640"\
+[Wysokość pliku wynikowego] " --output-img-height 480"\
+
+2. Błędy
+
+Jeżeli zobaczycie coś takiego:
+
+Exception in thread "main" org.dom4j.DocumentException: Error on line 111877 of document file:/home/slaskawiec/work/PRZEMEK/src/git/XMLParser/Package/xml/projekty_offline_mod.xml : The entity name must immediately follow the '&' in the entity reference. Nested exception: The entity name must immediately follow the '&' in the entity reference.
+	at org.dom4j.io.SAXReader.read(SAXReader.java:482)
+	at org.dom4j.io.SAXReader.read(SAXReader.java:291)
+	at com.sl.xmlparser.xml.XmlParser.parse(XmlParser.java:30)
+	at com.sl.xmlparser.App.main(App.java:34)
+Nested exception: 
+org.xml.sax.SAXParseException: The entity name must immediately follow the '&' in the entity reference.
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:195)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:174)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:388)
+
+
+Błąd wynika z tego, że w XML nie wolno używać '&'. Zamiast tego używa się &amp;
+Tutaj jest zaklęcie, które naprawi niepoprawne pliki: 
+    sed 's/\&/&amp;/g' projekty_offline_mod.xml > projekty_offline_mod_fixed.xml

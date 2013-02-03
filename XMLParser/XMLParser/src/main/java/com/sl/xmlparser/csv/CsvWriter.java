@@ -85,11 +85,13 @@ public class CsvWriter {
                 sb.append(getAsStringEscaped(pm.getBuildingHeight())).append(",");
                 sb.append(getAsStringEscaped(pm.getSlopeOfTheRoof())).append(",");
                 sb.append(getAsStringEscaped(pm.getBasement())).append(",");
-                
+
                 out.println(sb.toString());
             }
         } finally {
-            out.close();
+            if (out != null) {
+                out.close();
+            }
         }
 
     }

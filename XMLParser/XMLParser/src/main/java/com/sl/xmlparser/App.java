@@ -29,7 +29,7 @@ public class App {
 
             logger.log(Level.INFO, "XML File for parsing {0}", parser.getConfiguration().getInputXmlFile());
 
-            URL xmlFile = Thread.currentThread().getContextClassLoader().getResource(parser.getConfiguration().getInputXmlFile());
+            URL xmlFile = new URL(parser.getConfiguration().getInputXmlFile());
 
             List<ProjectModel> parsedModels = xmlParser.parse(xmlFile);
 
