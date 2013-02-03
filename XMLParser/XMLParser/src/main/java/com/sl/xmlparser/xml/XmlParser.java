@@ -32,43 +32,45 @@ public class XmlParser {
 
 
         List<Node> nodes = document.selectNodes(this.configuration.getMainXmlElementXPath());
-        for (Node projectNode : nodes) {
+        for (int i = 0; i < nodes.size(); ++i) {
+            Node projectNode = nodes.get(i);
+
             ProjectModel model = MtmModelDecorator.decorateModel(new ProjectModel(), configuration);
             model.setProjectName(projectNode.valueOf(configuration.getProjectNameXPath()));
             model.setShortDescription(projectNode.valueOf(configuration.getShortDescriptionXPath()));
             model.setFullDescription(projectNode.valueOf(configuration.getFullDescriptionXPath()));
             model.setCategory(projectNode.valueOf(configuration.getCategoryXPath()));
             model.setPriceWithVat(projectNode.valueOf(configuration.getPriceWithVatXPath()));
-            
-            for(Object n : projectNode.selectNodes(configuration.getImgMainXPath())) {
-                model.addImgMain(((Node)n).getText());
+
+            for (Object n : projectNode.selectNodes(configuration.getImgMainXPath())) {
+                model.addImgMain(((Node) n).getText());
             }
-            
-            for(Object n : projectNode.selectNodes(configuration.getImgElevationXPath())) {
-                model.addImgElevation(((Node)n).getText());
+
+            for (Object n : projectNode.selectNodes(configuration.getImgElevationXPath())) {
+                model.addImgElevation(((Node) n).getText());
             }
-            
-            for(Object n : projectNode.selectNodes(configuration.getImgProjectionXPath())) {
-                model.addImgProjection(((Node)n).getText());
+
+            for (Object n : projectNode.selectNodes(configuration.getImgProjectionXPath())) {
+                model.addImgProjection(((Node) n).getText());
             }
-            
-            for(Object n : projectNode.selectNodes(configuration.getImgLocationXPath())) {
-                model.addImgLocation(((Node)n).getText());
+
+            for (Object n : projectNode.selectNodes(configuration.getImgLocationXPath())) {
+                model.addImgLocation(((Node) n).getText());
             }
-            
+
             model.setUsableSpace(projectNode.valueOf(configuration.getUsableSpaceXPath()));
             model.setFloors(projectNode.valueOf(configuration.getFloorsXPath()));
             model.setGarage(projectNode.valueOf(configuration.getGarageXPath()));
             model.setTechnology(projectNode.valueOf(configuration.getTechnologyXPath()));
             model.setRoofType(projectNode.valueOf(configuration.getRoofTypeXPath()));
-            model.setMinimumPlot(projectNode.valueOf(configuration.getMinimumPlotXPath()));            
+            model.setMinimumPlot(projectNode.valueOf(configuration.getMinimumPlotXPath()));
             model.setBuildInArea(projectNode.valueOf(configuration.getBuiltInAreaXPath()));
             model.setVolume(projectNode.valueOf(configuration.getVolumeXPath()));
             model.setBuildingHeight(projectNode.valueOf(configuration.getBuildingHeightXPath()));
             model.setSlopeOfTheRoof(projectNode.valueOf(configuration.getSlopeOfTheRoofXPath()));
-            
+
             parsedModels.add(model);
-            System.out.println("Project = " + model);
+            logger.log(Level.INFO, "Parsed ProjectModel[{0}]: {1}", new Object[]{i, model});
         }
 
         return parsedModels;

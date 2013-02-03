@@ -1,99 +1,125 @@
 package com.sl.xmlparser.config;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.kohsuke.args4j.Argument;
 import org.kohsuke.args4j.Option;
 
 public class Configuration {
     
-    @Argument(index = 1)
-    private List<String> arguments = new ArrayList<String>();
-    
-    @Option(name = "--xml-main-element")
+    @Option(name = "--xml-main-element", usage = "Root XML element")
     private String mainXmlElementXPath = "/projekty/projekt";
     
-    @Option(name = "--xml-project-name")
+    @Option(name = "--xml-project-name", usage = "Name XPath")
     private String projectNameXPath = "nazwa";
     
-    @Option(name = "--xml-full-description")
+    @Option(name = "--xml-full-description", usage = "Full description XPath")
     private String fullDescriptionXPath = "opis";
     
-    @Option(name = "--xml-short-description")
+    @Option(name = "--xml-short-description", usage = "Short description XPath")
     private String shortDescriptionXPath = "skrot";
     
-    @Option(name = "--xml-category")
+    @Option(name = "--xml-category", usage = "Category XPath")
     private String categoryXPath = "kategoria";
     
-    @Option(name = "--xml-price-with-vat")
+    @Option(name = "--xml-price-with-vat", usage = "Prica with VAT XPath")
     private String priceWithVatXPath = "ceny/@brutto";
     
-    @Option(name = "--xml-img-main")
+    @Option(name = "--xml-img-main", usage = "Main images XPath")
     private String imgMainXPath = "zdjecia//zdjecie[@nazwa='zdjecie']/@plik";
     
-    @Option(name = "--xml-img-projection")
+    @Option(name = "--xml-img-projection", usage = "Projection images XPath")
     private String imgProjectionXPath = "kondygnacje//kondygnacja/@rzut";
     
-    @Option(name = "--xml-img-elevation")
+    @Option(name = "--xml-img-elevation", usage = "Elevation images XPath")
     private String imgElevationXPath = "elewacje//elewacja/@zdjecie";
     
-    @Option(name = "--xml-img-location")
+    @Option(name = "--xml-img-location", usage = "Location images XPath")
     private String imgLocationXPath = "zdjecia/zdjecie[@nazwa='teren']/@plik";
     
-    @Option(name = "--xml-usable-space")
+    @Option(name = "--xml-usable-space", usage = "Usable space XPath")
     private String usableSpaceXPath = "powierzchnie/@uzytkowa";
     
-    @Option(name = "--xml-floors")
+    @Option(name = "--xml-floors", usage = "Floors XPath")
     private String floorsXPath = "concat(kondygnacje//kondygnacja[1]/@nazwa, ',', kondygnacje//kondygnacja[2]/@nazwa, ',', kondygnacje//kondygnacja[3]/@nazwa)";
     
-    @Option(name = "--xml-garage")
+    @Option(name = "--xml-garage", usage = "Garage XPath")
     private String garageXPath = "ilosc_stanowisk_garazowych";
     
-    @Option(name = "--xml-technology")
+    @Option(name = "--xml-technology", usage = "Technology XPath")
     private String technologyXPath = "rodzaj";
     
-    @Option(name = "--xml-roof-type")
+    @Option(name = "--xml-roof-type", usage = "Roof type XPath")
     private String roofTypeXPath = "rodzaj_dachu";
     
-    @Option(name = "--xml-minimum-plot")
+    @Option(name = "--xml-minimum-plot", usage = "Minimum plot XPath")
     private String minimumPlotXPath = "concat(wymiary/wymiar[@nazwa='min-szerokosc-dzialki'], ' x ', wymiary/wymiar[@nazwa='min-dlugosc-dzialki'], ' m')";
     
-    @Option(name = "--xml-built-in-area")
+    @Option(name = "--xml-built-in-area", usage = "Build in are XPath")
     private String builtInAreaXPath = "concat(powierzchnie/powierzchnia[@nazwa='zabudowy'], ' m2')";
     
-    @Option(name = "--xml-volume")
+    @Option(name = "--xml-volume", usage = "Volume XPath")
     private String volumeXPath = "concat(kubatura/@calkowita, ' m3')";
     
-    @Option(name = "--xml-building-height")
+    @Option(name = "--xml-building-height", usage = "Building height XPath")
     private String buildingHeightXPath = "concat(wymiary/wymiar[@nazwa='wysokosc'], ' m')";
     
-    @Option(name = "--xml-slope-of-the-roof")
+    @Option(name = "--xml-slope-of-the-roof", usage = "Slope of the roof XPath")
     private String slopeOfTheRoofXPath = "concat(wymiary/wymiar[@nazwa='kat-dachu'], '°')";
     
-    @Option(name = "--xml-basement")
+    @Option(name = "--xml-basement", usage = "Basement XPath")
     private String basementXPath;
     
-    @Option(name = "--constant-amount")
+    @Option(name = "--constant-amount", usage = "Constant used for Amount element")
     private Integer amountConstant = 99;
     
-    @Option(name = "--constant-active")
+    @Option(name = "--constant-active", usage = "Constant used for Active element")
     private Integer active = 1;
     
-    @Option(name = "--constant-img-uri-template")
-    private String uriPrefixConstant = "http://localhost/%s";
+    @Option(name = "--constant-img-main-uri-template", usage = "Directory with main images")
+    private String imgMainUriTemplateContant = "/home/slaskawiec/Downloads/xml/wizualizacje/%s";
+    
+    @Option(name = "--constant-img-location-uri-template", usage = "Directory with location images")
+    private String imgLocationUriTemplateContant = "/home/slaskawiec/Downloads/xml/usytuowanie/%s";
 
-    @Option(name = "--constant-img-link-template")
+    @Option(name = "--constant-img-projection-uri-template", usage = "Directory with projection images")
+    private String imgProjectionUriTemplateContant = "/home/slaskawiec/Downloads/xml/rzuty/%s";
+    
+    @Option(name = "--constant-img-elevation-uri-template", usage = "Directory with elevation images")
+    private String imgElevationUriTemplateContant = "/home/slaskawiec/Downloads/xml/elewacje/%s";
+    
+    @Option(name = "--constant-img-link-template", usage = "HTML template for images")
     private String imgLinkTemplateConstant = "<img src=\"%s\" alt=\"\" />";
     
-    @Option(name = "--output-directory")
-    private String outputDirectory = ".";
+    @Option(name = "--output-directory", usage = "Output directory")
+    private String outputDirectory = "./test";
     
-    @Option(name = "--output-csv-name")
+    @Option(name = "--output-csv-name", usage = "Output CSV file name")
     private String outputCsvName = "index.csv";
 
-    @Argument(index = 0, required = true)
+    @Option(name = "--output-img-width", usage = "Width of the resized image")
+    private Integer outputImgWidth = 640;
+    
+    @Option(name = "--output-img-height", usage = "Height of the resized image")
+    private Integer outputImgHeight = 480;
+    
+    @Argument(index = 0, required = true, usage = "Input XML URI")
     private String inputXmlFile;
+    
+    public Integer getOutputImgWidth() {
+        return outputImgWidth;
+    }
 
+    public void setOutputImgWidth(Integer outputImgWidth) {
+        this.outputImgWidth = outputImgWidth;
+    }
+
+    public Integer getOutputImgHeight() {
+        return outputImgHeight;
+    }
+
+    public void setOutputImgHeight(Integer outputImgHeight) {
+        this.outputImgHeight = outputImgHeight;
+    }
+    
     public String getInputXmlFile() {
         return inputXmlFile;
     }
@@ -311,19 +337,35 @@ public class Configuration {
         this.active = aktywny;
     }
 
-    public List<String> getArguments() {
-        return arguments;
+    public String getImgMainUriTemplateContant() {
+        return imgMainUriTemplateContant;
     }
 
-    public void setArguments(List<String> arguments) {
-        this.arguments = arguments;
-    }
-    
-    public String getUriPrefixConstant() {
-        return uriPrefixConstant;
+    public void setImgMainUriTemplateContant(String imgMainUriTemplateContant) {
+        this.imgMainUriTemplateContant = imgMainUriTemplateContant;
     }
 
-    public void setUriPrefixConstant(String uriPrefixConstant) {
-        this.uriPrefixConstant = uriPrefixConstant;
+    public String getImgLocationUriTemplateContant() {
+        return imgLocationUriTemplateContant;
+    }
+
+    public void setImgLocationUriTemplateContant(String imgLocationUriTemplateContant) {
+        this.imgLocationUriTemplateContant = imgLocationUriTemplateContant;
+    }
+
+    public String getImgProjectionUriTemplateContant() {
+        return imgProjectionUriTemplateContant;
+    }
+
+    public void setImgProjectionUriTemplateContant(String imgProjectionUriTemplateContant) {
+        this.imgProjectionUriTemplateContant = imgProjectionUriTemplateContant;
+    }
+
+    public String getImgElevationUriTemplateContant() {
+        return imgElevationUriTemplateContant;
+    }
+
+    public void setImgElevationUriTemplateContant(String imgElevationUriTemplateContant) {
+        this.imgElevationUriTemplateContant = imgElevationUriTemplateContant;
     }
 }

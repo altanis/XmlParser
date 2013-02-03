@@ -190,6 +190,7 @@ public class MtmModelDecorator {
             @Override
             public void setUsableSpace(String usableSpace) {
                 model.setUsableSpace(usableSpace);
+                model.setUsableSpace2(usableSpace);
                 if (model.getUsableSpace() != null) {
                     int extractedUsableSpace2 = model.getUsableSpace().intValue();
                     for (int compareValue : usableSpaceMapping.keySet()) {
@@ -219,6 +220,8 @@ public class MtmModelDecorator {
 
             @Override
             public void setFloors(String floors) {
+                model.setFloors(floors);
+                model.setFloors2(floors);
                 if (floors != null && !floors.isEmpty()) {
                     String[] splittedFloors = floors.trim().split(",");
 
@@ -257,6 +260,8 @@ public class MtmModelDecorator {
 
             @Override
             public void setGarage(String garage) {
+                model.setGarage(garage);
+                model.setGarage2(garage);
                 if (garage != null && !garage.isEmpty()) {
                     Integer numberOfGarages = Integer.valueOf(garage);
                     model.setGarage(garageMapping.get(numberOfGarages));
@@ -286,6 +291,8 @@ public class MtmModelDecorator {
 
             @Override
             public void setTechnology(String technology) {
+                model.setTechnology(technology);
+                model.setTechnology2(technology);
                 if (technology != null && !technology.isEmpty()) {
                     model.setTechnology(technologyMapping.get(technology));
                     model.setTechnology2(technologyMapping.get(technology));
@@ -299,6 +306,8 @@ public class MtmModelDecorator {
 
             @Override
             public void setRoofType(String roofType) {
+                model.setRoofType(roofType);
+                model.setRoofType2(roofType);
                 if (roofType != null && !roofType.isEmpty()) {
                     model.setRoofType(roofTypeMapping.get(roofType));
                     model.setRoofType2(roofTypeMapping.get(roofType));
@@ -322,6 +331,8 @@ public class MtmModelDecorator {
 
             @Override
             public void setMinimumPlot(String minimumPlot) {
+                model.setMinimumPlot(minimumPlot);
+                model.setMinimumPlot2(minimumPlot);
                 if (minimumPlot != null && !minimumPlot.isEmpty()) {
                     String[] splittedPlot = minimumPlot.replaceAll("[a-zA-Z&&[^x]]","").trim().split("\\s*x\\s*");
                     if (splittedPlot.length == 2) {

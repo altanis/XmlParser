@@ -42,25 +42,32 @@ public class CsvWriter {
                 sb.append(getAsStringEscaped(pm.getCategoryForSearcher())).append(",");
                 sb.append(getAsStringEscaped(pm.getPriceWithVat())).append(",");
                 sb.append(getAsStringEscaped(pm.getAmount())).append(",");
-                sb.append(getAsStringEscaped(pm.getActive())).append(",");
 
+                sb.append("\"");
                 for (String img : pm.getImgMain()) {
-                    sb.append(getAsStringEscaped(String.format(configuration.getImgLinkTemplateConstant(), img))).append(" ");
+                    sb.append(String.format(configuration.getImgLinkTemplateConstant(), img)).append(" ");
                 }
+                sb.append("\",");
 
+                sb.append("\"");
                 for (String img : pm.getImgProjection()) {
-                    sb.append(getAsStringEscaped(String.format(configuration.getImgLinkTemplateConstant(), img))).append(" ");
+                    sb.append(String.format(configuration.getImgLinkTemplateConstant(), img)).append(" ");
                 }
+                sb.append("\",");
 
+                sb.append("\"");
                 for (String img : pm.getImgElevation()) {
-                    sb.append(getAsStringEscaped(String.format(configuration.getImgLinkTemplateConstant(), img))).append(" ");
+                    sb.append(String.format(configuration.getImgLinkTemplateConstant(), img)).append(" ");
                 }
+                sb.append("\",");
 
+                sb.append("\"");
                 for (String img : pm.getImgLocation()) {
-                    sb.append(getAsStringEscaped(String.format(configuration.getImgLinkTemplateConstant(), img))).append(" ");
+                    sb.append(String.format(configuration.getImgLinkTemplateConstant(), img)).append(" ");
                 }
+                sb.append("\",");
 
-
+                sb.append(getAsStringEscaped(pm.getActive())).append(",");
                 sb.append(getAsStringEscaped(pm.getUsableSpace())).append(",");
                 sb.append(getAsStringEscaped(pm.getUsableSpace2())).append(",");
                 sb.append(getAsStringEscaped(pm.getFloors())).append(",");

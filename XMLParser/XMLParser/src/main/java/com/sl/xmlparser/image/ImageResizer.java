@@ -1,12 +1,16 @@
 package com.sl.xmlparser.image;
 
+import com.sl.xmlparser.config.Configuration;
+import com.sl.xmlparser.model.ProjectModel;
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -15,6 +19,67 @@ public class ImageResizer {
 
     private static final Logger logger = Logger.getLogger(ImageResizer.class.getCanonicalName());
 
+    private Configuration configuration;
+    
+    public ImageResizer(Configuration configuration) {
+        this.configuration = configuration;
+    }
+    
+    public void resizeImages(List<ProjectModel> listOfModels) throws IOException {
+        File outputDirectory = new File(configuration.getOutputDirectory());
+        
+        if(!outputDirectory.exists()) {
+            throw new FileNotFoundException("Output directory does not exist!");
+        }
+        
+        for(int i = 0; i < listOfModels.size(); ++i) {
+            File imgDirectory = new File(outputDirectory, Integer.toString(i));
+            imgDirectory.mkdir();
+            
+            for(String imgMain : listOfModels.get(i).getImgMain()) {
+                File src = new File(String.format(configuration.getImgMainUriTemplateContant(), imgMain));
+                if(src.exists()) {
+                    File dst = new File(imgDirectory, imgMain);
+                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight());
+                } else {
+                    logger.log(Level.WARNING, "Image {0} does not exist", src);
+                }
+            }
+            
+            for(String imgProjection : listOfModels.get(i).getImgProjection()) {
+                File src = new File(String.format(configuration.getImgMainUriTemplateContant(), imgProjection));
+                if(src.exists()) {
+                    File dst = new File(imgDirectory, imgProjection);
+                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight());
+                } else {
+                    logger.log(Level.WARNING, "Image {0} does not exist", src);
+                }
+            }
+            
+            for(String imgLocation : listOfModels.get(i).getImgLocation()) {
+                File src = new File(String.format(configuration.getImgMainUriTemplateContant(), imgLocation));
+                if(src.exists()) {
+                    File dst = new File(imgDirectory, imgLocation);
+                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight());
+                } else {
+                    logger.log(Level.WARNING, "Image {0} does not exist", src);
+                }
+            }
+            
+            for(String imgElevation : listOfModels.get(i).getImgElevation()) {
+                File src = new File(String.format(configuration.getImgMainUriTemplateContant(), imgElevation));
+                if(src.exists()) {
+                    File dst = new File(imgDirectory, imgElevation);
+                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight());
+                } else {
+                    logger.log(Level.WARNING, "Image {0} does not exist", src);
+                }
+            }
+        }
+    }
+    
+    
+    
     public void resizeAndSave(URI sourceUri, File destinationFile, int scaledWidth, int scaledHeight) throws IOException {
         logger.log(Level.INFO, "Resizing image from URL {0} and saving to {1}. Resizing to {2} x {3}", new Object[]{sourceUri.toURL(), destinationFile, scaledWidth, scaledHeight});
 
