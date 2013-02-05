@@ -32,6 +32,9 @@ public class MtmModelDecorator {
         categoryMapping.put("jednorodzinny_z_uzytkowym_poddaszem", "Projekty domów z poddaszem użytkowym");
         categoryMapping.put("jednorodzinny_dwukondygnacyjny", "Projekty domów piętrowych");
         categoryMapping.put("jednorodzinny_parterowy", "Projekty domów parterowych");
+        categoryMapping.put("dwurodzinny_dwupokoleniowy", "Projekty domów dwurodzinnych");
+        categoryMapping.put("w_zabudowie_blizniaczej", "Projekty domów w zabudowie bliźniaczej");
+        categoryMapping.put("letniskowy", "Projekty domów letniskowych");
 
         usableSpaceMapping.put(100, "do 100m2");
         usableSpaceMapping.put(130, "od 100m2 - 130m2");
@@ -41,6 +44,7 @@ public class MtmModelDecorator {
 
         floorConfigurationMapping.put(new String[]{"parter"}, "Parterowe");
         floorConfigurationMapping.put(new String[]{"parter", "poddasze"}, "Parterowe z poddaszem");
+        floorConfigurationMapping.put(new String[]{"piwnica", "parter", "poddasze"}, "Parterowe z poddaszem");
         floorConfigurationMapping.put(new String[]{"parter", "pietro1"}, "Piętrowe");
 
         garageMapping.put(0, "Brak");

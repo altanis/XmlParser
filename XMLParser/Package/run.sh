@@ -4,7 +4,7 @@ JAR_NAME='XMLParser-1.0-SNAPSHOT-jar-with-dependencies.jar'
 
 
 
-ARGUMENTS="file:///home/slaskawiec/work/PRZEMEK/src/git/XMLParser/Package/xml/projekty_offline_mod.xml"\
+ARGUMENTS="file:///home/slaskawiec/work/PRZEMEK/src/git/XMLParser/Package/xml/projekty_offline_mod_fixed.xml"\
 " --output-directory ./output"\
 " --output-csv-name index.csv"\
 " --constant-img-main-uri-template ./images/wizualizacje/%s"\
