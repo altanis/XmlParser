@@ -101,6 +101,9 @@ public class Configuration {
     @Option(name = "--output-img-height", usage = "Height of the resized image")
     private Integer outputImgHeight = 480;
     
+    @Option(name = "--output-img-compression-ratio", usage = "JPG Compression ratio")
+    private Float outputImgCompressionRatio = 0.8f;
+    
     @Argument(index = 0, required = true, usage = "Input XML URI")
     private String inputXmlFile;
     
@@ -367,5 +370,13 @@ public class Configuration {
 
     public void setImgElevationUriTemplateContant(String imgElevationUriTemplateContant) {
         this.imgElevationUriTemplateContant = imgElevationUriTemplateContant;
+    }
+    
+    public Float getOutputImgCompressionRatio() {
+        return outputImgCompressionRatio;
+    }
+
+    public void setOutputImgCompressionRatio(Float outputImgCompressionRatio) {
+        this.outputImgCompressionRatio = outputImgCompressionRatio;
     }
 }
