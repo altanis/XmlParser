@@ -24,7 +24,7 @@ public class Configuration {
     private String priceWithVatXPath = "ceny/@brutto";
     
     @Option(name = "--xml-img-main", usage = "Main images XPath")
-    private String imgMainXPath = "zdjecia//zdjecie[@nazwa='zdjecie']/@plik";
+    private String imgMainXPath = "zdjecia//zdjecie[@nazwa='zdjecie']/@plik | zdjecia//zdjecie[@nazwa='zdjecie-tyl']/@plik";
     
     @Option(name = "--xml-img-projection", usage = "Projection images XPath")
     private String imgProjectionXPath = "kondygnacje//kondygnacja/@rzut";
@@ -75,16 +75,16 @@ public class Configuration {
     private Integer active = 1;
     
     @Option(name = "--constant-img-main-uri-template", usage = "Directory with main images")
-    private String imgMainUriTemplateContant = "/home/slaskawiec/Downloads/xml/wizualizacje/%s";
+    private String imgMainUriTemplateContant = "/home/slaskawiec/work/PRZEMEK/src/git/XMLParser/Package/images/wizualizacje/%s";
     
     @Option(name = "--constant-img-location-uri-template", usage = "Directory with location images")
-    private String imgLocationUriTemplateContant = "/home/slaskawiec/Downloads/xml/usytuowanie/%s";
+    private String imgLocationUriTemplateContant = "/home/slaskawiec/work/PRZEMEK/src/git/XMLParser/Package/images/usytuowanie/%s";
 
     @Option(name = "--constant-img-projection-uri-template", usage = "Directory with projection images")
-    private String imgProjectionUriTemplateContant = "/home/slaskawiec/Downloads/xml/rzuty/%s";
+    private String imgProjectionUriTemplateContant = "/home/slaskawiec/work/PRZEMEK/src/git/XMLParser/Package/images/rzuty/%s";
     
     @Option(name = "--constant-img-elevation-uri-template", usage = "Directory with elevation images")
-    private String imgElevationUriTemplateContant = "/home/slaskawiec/Downloads/xml/elewacje/%s";
+    private String imgElevationUriTemplateContant = "/home/slaskawiec/work/PRZEMEK/src/git/XMLParser/Package/images/elewacje/%s";
     
     @Option(name = "--constant-img-link-template", usage = "HTML template for images")
     private String imgLinkTemplateConstant = "<img src=\"\"http://www.novio.pl/img/cms/projekty/nowe/%s%d/%s\"\" alt=\"\"\"\" />";

@@ -62,16 +62,17 @@ public class XmlParserTest {
         assertEquals("45°", testedModel.getSlopeOfTheRoof());
         assertNull(testedModel.getBasement());
         
-        assertTrue(testedModel.getImgMain().contains("sopran_3_duzy_0.jpg"));
+        assertTrue(testedModel.getImgMain().contains("aga_duzy_0.jpg"));
+        assertTrue(testedModel.getImgMain().contains("aga_duzy_1.jpg"));
 
-        assertTrue(testedModel.getImgProjection().contains("sopran_3_rz1.jpg"));
-        assertTrue(testedModel.getImgProjection().contains("sopran_3_rz2.jpg"));
+        assertTrue(testedModel.getImgProjection().contains("aga_rz1.jpg"));
+        assertTrue(testedModel.getImgProjection().contains("aga_rz2.jpg"));
         
-        assertTrue(testedModel.getImgElevation().contains("sopran_3_elewacja_1.jpg"));
-        assertTrue(testedModel.getImgElevation().contains("sopran_3_elewacja_2.jpg"));
-        assertTrue(testedModel.getImgElevation().contains("sopran_3_elewacja_3.jpg"));
+        assertTrue(testedModel.getImgElevation().contains("aga_elewacja_1.jpg"));
+        assertTrue(testedModel.getImgElevation().contains("aga_elewacja_2.jpg"));
+        assertTrue(testedModel.getImgElevation().contains("aga_elewacja_3.jpg"));
         
-        assertTrue(testedModel.getImgLocation().contains("sopran_3_sytuacja.jpg"));
+        assertTrue(testedModel.getImgLocation().contains("aga_sytuacja.jpg"));
     }
     
 }

@@ -51,7 +51,7 @@ public class ImageResizer {
             }
 
             for (String imgProjection : listOfModels.get(i).getImgProjection()) {
-                File src = new File(String.format(configuration.getImgMainUriTemplateContant(), imgProjection));
+                File src = new File(String.format(configuration.getImgProjectionUriTemplateContant(), imgProjection));
                 if (src.exists()) {
                     File dst = new File(imgDirectory, imgProjection);
                     resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgCompressionRatio());
@@ -61,7 +61,7 @@ public class ImageResizer {
             }
 
             for (String imgLocation : listOfModels.get(i).getImgLocation()) {
-                File src = new File(String.format(configuration.getImgMainUriTemplateContant(), imgLocation));
+                File src = new File(String.format(configuration.getImgLocationUriTemplateContant(), imgLocation));
                 if (src.exists()) {
                     File dst = new File(imgDirectory, imgLocation);
                     resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgCompressionRatio());
@@ -71,7 +71,7 @@ public class ImageResizer {
             }
 
             for (String imgElevation : listOfModels.get(i).getImgElevation()) {
-                File src = new File(String.format(configuration.getImgMainUriTemplateContant(), imgElevation));
+                File src = new File(String.format(configuration.getImgElevationUriTemplateContant(), imgElevation));
                 if (src.exists()) {
                     File dst = new File(imgDirectory, imgElevation);
                     resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgCompressionRatio());

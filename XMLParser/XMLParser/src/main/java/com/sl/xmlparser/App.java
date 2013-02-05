@@ -25,6 +25,10 @@ public class App {
         Long time = System.currentTimeMillis();
 
         try {
+//            args = new String[] {
+//                "file:///home/slaskawiec/work/PRZEMEK/src/git/XMLParser/XMLParser/src/test/resources/projekty_offline_mod.xml"
+//            };
+            
             parser.parseConfiguration(args);
 
             logger.log(Level.INFO, "XML File for parsing {0}", parser.getConfiguration().getInputXmlFile());

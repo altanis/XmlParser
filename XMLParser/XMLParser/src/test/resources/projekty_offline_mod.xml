@@ -37,7 +37,7 @@
 		<ceny vat="5" brutto="2520.00" /> <!-- cena z vat -->
 		<cena_kosztorysu vat="23" brutto="240.00" />
 		<kondygnacje>
-			<kondygnacja nazwa="parter" rzut="sopran_3_rz1.jpg"> <!-- rzut obrazek 1 --> <!-- kondygnacje -->
+			<kondygnacja nazwa="parter" rzut="aga_rz1.jpg"> <!-- rzut obrazek 1 --> <!-- kondygnacje -->
 				<pomieszczenia>
 					<pomieszczenie kategoria="inne" nazwa="wiatrołap" powierzchnia="1.8" />
 					<pomieszczenie kategoria="inne" nazwa="korytarz/komunikacja" powierzchnia="11.5" />
@@ -48,7 +48,7 @@
 					<pomieszczenie kategoria="garaz" nazwa="garaż" powierzchnia="29.4" />
 				</pomieszczenia>
 			</kondygnacja>
-			<kondygnacja nazwa="poddasze" rzut="sopran_3_rz2.jpg"> <!-- rzut obrazek 2 --> <!-- kondygnacje -->
+			<kondygnacja nazwa="poddasze" rzut="aga_rz2.jpg"> <!-- rzut obrazek 2 --> <!-- kondygnacje -->
 				<pomieszczenia>
 					<pomieszczenie kategoria="inne" nazwa="korytarz/komunikacja" powierzchnia="3" />
 					<pomieszczenie kategoria="lazienka" nazwa="łazienka" powierzchnia="7.1" />
@@ -90,15 +90,15 @@
 			<element nazwa="Projekt posiada wiatę garażową">nie</element>
 		</inne>
 		<zdjecia>
-			<zdjecie nazwa="teren" plik="sopran_3_sytuacja.jpg"></zdjecie> <!-- usytuowanie -->
-			<zdjecie nazwa="zdjecie" plik="sopran_3_duzy_0.jpg"></zdjecie> <!-- obrazki glowne -->
-			<zdjecie nazwa="zdjecie-tyl" plik="sopran_3_duzy_1.jpg"></zdjecie> <!-- obrazki glowne -->
+			<zdjecie nazwa="teren" plik="aga_sytuacja.jpg"></zdjecie> <!-- usytuowanie -->
+			<zdjecie nazwa="zdjecie" plik="aga_duzy_0.jpg"></zdjecie> <!-- obrazki glowne -->
+			<zdjecie nazwa="zdjecie-tyl" plik="aga_duzy_1.jpg"></zdjecie> <!-- obrazki glowne -->
 		</zdjecia>
 		<elewacje>
-			<elewacja nazwa="front" zdjecie="sopran_3_elewacja_1.jpg"/> <!-- elewacje -->
-			<elewacja nazwa="prawa" zdjecie="sopran_3_elewacja_2.jpg"/> <!-- elewacje -->
-			<elewacja nazwa="tyl" zdjecie="sopran_3_elewacja_3.jpg"/> <!-- elewacje -->
-			<elewacja nazwa="lewa" zdjecie="sopran_3_elewacja_4.jpg"/> <!-- elewacje -->
+			<elewacja nazwa="front" zdjecie="aga_elewacja_1.jpg"/> <!-- elewacje -->
+			<elewacja nazwa="prawa" zdjecie="aga_elewacja_2.jpg"/> <!-- elewacje -->
+			<elewacja nazwa="tyl" zdjecie="aga_elewacja_3.jpg"/> <!-- elewacje -->
+			<elewacja nazwa="lewa" zdjecie="aga_elewacja_4.jpg"/> <!-- elewacje -->
 		</elewacje>
 		<galeria>
 			<foto plik="sopran_3_obrot_01.jpg"/>
