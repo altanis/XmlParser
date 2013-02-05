@@ -87,7 +87,7 @@ public class Configuration {
     private String imgElevationUriTemplateContant = "/home/slaskawiec/Downloads/xml/elewacje/%s";
     
     @Option(name = "--constant-img-link-template", usage = "HTML template for images")
-    private String imgLinkTemplateConstant = "<img src=\"%s\" alt=\"\" />";
+    private String imgLinkTemplateConstant = "<img src=\"\"http://www.novio.pl/img/cms/projekty/nowe/%s%d/%s\"\" alt=\"\"\"\" />";
     
     @Option(name = "--output-directory", usage = "Output directory")
     private String outputDirectory = "./test";
