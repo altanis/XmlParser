@@ -92,6 +92,9 @@ public class Configuration {
     @Option(name = "--output-directory", usage = "Output directory")
     private String outputDirectory = "./test";
     
+    @Option(name = "--output-directory-prefix", usage = "Output directory Prefix")
+    private String outputDirectoryPrefix = "p";
+    
     @Option(name = "--output-csv-name", usage = "Output CSV file name")
     private String outputCsvName = "index.csv";
 
@@ -378,5 +381,13 @@ public class Configuration {
 
     public void setOutputImgCompressionRatio(Float outputImgCompressionRatio) {
         this.outputImgCompressionRatio = outputImgCompressionRatio;
+    }
+    
+    public String getOutputDirectoryPrefix() {
+        return outputDirectoryPrefix;
+    }
+
+    public void setOutputDirectoryPrefix(String outputDirectoryPrefix) {
+        this.outputDirectoryPrefix = outputDirectoryPrefix;
     }
 }

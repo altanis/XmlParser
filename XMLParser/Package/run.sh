@@ -14,7 +14,8 @@ ARGUMENTS="file:///home/slaskawiec/work/PRZEMEK/src/git/XMLParser/Package/xml/pr
 " --constant-amount 99"\
 " --constant-active 1"\
 " --constant-img-link-template <img\u0020src=\"%s\"\u0020alt=\"\"\u0020/>"\
-" --output-img-compression-ratio 0.9"
+" --output-img-compression-ratio 0.9"\
+" --output-directory-prefix p"
 
 echo "PROGRAM ARGUMENTS: $ARGUMENTS"
 

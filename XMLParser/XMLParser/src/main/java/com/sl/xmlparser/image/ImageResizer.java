@@ -37,7 +37,7 @@ public class ImageResizer {
         }
 
         for (int i = 0; i < listOfModels.size(); ++i) {
-            File imgDirectory = new File(outputDirectory, Integer.toString(i));
+            File imgDirectory = new File(outputDirectory, configuration.getOutputDirectoryPrefix() + Integer.toString(i));
             imgDirectory.mkdir();
 
             for (String imgMain : listOfModels.get(i).getImgMain()) {
