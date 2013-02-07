@@ -45,8 +45,11 @@ public class CsvWriter {
                 sb.append(getAsStringEscaped(pm.getAmount())).append(";");
                 
                 sb.append("\"");
-                for (String imgMain : pm.getImgMain()) {
-                    sb.append(String.format(configuration.getImgLinkTemplateConstant(), configuration.getOutputDirectoryPrefix(), i, imgMain)).append(" ");
+                for (int j = 0; j < pm.getImgMain().size(); ++j) {
+                    sb.append(String.format(configuration.getImgMainTemplateConstant(), configuration.getOutputDirectoryPrefix(), i, pm.getImgMain().get(j)));
+                    if(j < pm.getImgMain().size() - 1) {
+                        sb.append(",");
+                    }
                 }
                 sb.append("\";");
                 

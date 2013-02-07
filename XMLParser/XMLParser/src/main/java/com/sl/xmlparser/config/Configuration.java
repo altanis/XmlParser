@@ -89,6 +89,9 @@ public class Configuration {
     @Option(name = "--constant-img-link-template", usage = "HTML template for images")
     private String imgLinkTemplateConstant = "<img src=\"\"http://www.novio.pl/img/cms/projekty/nowe/%s%d/%s\"\" alt=\"\"\"\" />";
     
+    @Option(name = "--constant-img-main-template", usage = "HTML template for images")
+    private String imgMainTemplateConstant = "http://www.novio.pl/img/cms/projekty/nowe/%s%d/%s";
+    
     @Option(name = "--output-directory", usage = "Output directory")
     private String outputDirectory = "./test";
     
@@ -389,5 +392,13 @@ public class Configuration {
 
     public void setOutputDirectoryPrefix(String outputDirectoryPrefix) {
         this.outputDirectoryPrefix = outputDirectoryPrefix;
+    }
+    
+     public String getImgMainTemplateConstant() {
+        return imgMainTemplateConstant;
+    }
+
+    public void setImgMainTemplateConstant(String imgMainTemplateConstant) {
+        this.imgMainTemplateConstant = imgMainTemplateConstant;
     }
 }
