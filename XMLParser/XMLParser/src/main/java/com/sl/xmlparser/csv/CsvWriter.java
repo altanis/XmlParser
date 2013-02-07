@@ -32,7 +32,8 @@ public class CsvWriter {
             
             out.println(HEADER);
             
-            for (ProjectModel pm : modelsToBeWritten) {
+            for(int i = 0; i < modelsToBeWritten.size(); ++i) {
+                ProjectModel pm = modelsToBeWritten.get(i);
                 sb.setLength(0);
                 
                 sb.append(getAsStringEscaped(pm.getProjectName())).append(";");
@@ -44,26 +45,26 @@ public class CsvWriter {
                 sb.append(getAsStringEscaped(pm.getAmount())).append(";");
                 
                 sb.append("\"");
-                for (int i = 0; i < pm.getImgMain().size(); ++i) {
-                    sb.append(String.format(configuration.getImgLinkTemplateConstant(), configuration.getOutputDirectoryPrefix(), i, pm.getImgMain().get(i))).append(" ");
+                for (String imgMain : pm.getImgMain()) {
+                    sb.append(String.format(configuration.getImgLinkTemplateConstant(), configuration.getOutputDirectoryPrefix(), i, imgMain)).append(" ");
                 }
                 sb.append("\";");
                 
                 sb.append("\"");
-                for (int i = 0; i < pm.getImgProjection().size(); ++i) {
-                    sb.append(String.format(configuration.getImgLinkTemplateConstant(), configuration.getOutputDirectoryPrefix(), i, pm.getImgProjection().get(i))).append(" ");
+                for (String imgProjection : pm.getImgProjection()) {
+                    sb.append(String.format(configuration.getImgLinkTemplateConstant(), configuration.getOutputDirectoryPrefix(), i, imgProjection)).append(" ");
                 }
                 sb.append("\";");
                 
                 sb.append("\"");
-                for (int i = 0; i < pm.getImgElevation().size(); ++i) {
-                    sb.append(String.format(configuration.getImgLinkTemplateConstant(), configuration.getOutputDirectoryPrefix(), i, pm.getImgElevation().get(i))).append(" ");
+                for (String imgElevation : pm.getImgElevation()) {
+                    sb.append(String.format(configuration.getImgLinkTemplateConstant(), configuration.getOutputDirectoryPrefix(), i, imgElevation)).append(" ");
                 }
                 sb.append("\";");
                 
                 sb.append("\"");
-                for (int i = 0; i < pm.getImgLocation().size(); ++i) {
-                    sb.append(String.format(configuration.getImgLinkTemplateConstant(), configuration.getOutputDirectoryPrefix(), i, pm.getImgLocation().get(i))).append(" ");
+                for (String imgLocation : pm.getImgLocation()) {
+                    sb.append(String.format(configuration.getImgLinkTemplateConstant(), configuration.getOutputDirectoryPrefix(), i, imgLocation)).append(" ");
                 }
                 sb.append("\";");
                 
