@@ -7,8 +7,12 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URI;
 import java.util.List;
 import java.util.logging.Level;
@@ -44,7 +48,7 @@ public class ImageResizer {
                 File src = new File(String.format(configuration.getImgMainUriTemplateContant(), imgMain));
                 if (src.exists()) {
                     File dst = new File(imgDirectory, imgMain);
-                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgCompressionRatio());
+                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgMainCompressionRatio());
                 } else {
                     logger.log(Level.WARNING, "Image {0} does not exist", src);
                 }
@@ -54,7 +58,7 @@ public class ImageResizer {
                 File src = new File(String.format(configuration.getImgProjectionUriTemplateContant(), imgProjection));
                 if (src.exists()) {
                     File dst = new File(imgDirectory, imgProjection);
-                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgCompressionRatio());
+                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgProjectionRatio());
                 } else {
                     logger.log(Level.WARNING, "Image {0} does not exist", src);
                 }
@@ -64,7 +68,7 @@ public class ImageResizer {
                 File src = new File(String.format(configuration.getImgLocationUriTemplateContant(), imgLocation));
                 if (src.exists()) {
                     File dst = new File(imgDirectory, imgLocation);
-                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgCompressionRatio());
+                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgLocationCompressionRatio());
                 } else {
                     logger.log(Level.WARNING, "Image {0} does not exist", src);
                 }
@@ -74,7 +78,7 @@ public class ImageResizer {
                 File src = new File(String.format(configuration.getImgElevationUriTemplateContant(), imgElevation));
                 if (src.exists()) {
                     File dst = new File(imgDirectory, imgElevation);
-                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgCompressionRatio());
+                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgElevationCompressionRatio());
                 } else {
                     logger.log(Level.WARNING, "Image {0} does not exist", src);
                 }
@@ -85,18 +89,40 @@ public class ImageResizer {
     public void resizeAndSave(URI sourceUri, File destinationFile, int scaledWidth, int scaledHeight, float conpressionRatio) throws IOException {
         logger.log(Level.INFO, "Resizing image from URL {0} and saving to {1}. Resizing to {2} x {3}. Compression ratio: {4}", new Object[]{sourceUri.toURL(), destinationFile, scaledWidth, scaledHeight, conpressionRatio});
 
-        BufferedImage sourceImg = ImageIO.read(sourceUri.toURL());
-        BufferedImage destImg = createResizedCopy(sourceImg, scaledWidth, scaledHeight, conpressionRatio, true);
+        if (conpressionRatio >= 1.0f) {
+            InputStream inStream = null;
+            OutputStream outStream = null;
+            try {
+                inStream = sourceUri.toURL().openStream();
+                outStream = new FileOutputStream(destinationFile);
 
-        ImageOutputStream imgOutStrm = ImageIO.createImageOutputStream(destinationFile);
+                byte[] buffer = new byte[1024];
+                int length;
+                while ((length = inStream.read(buffer)) > 0) {
+                    outStream.write(buffer, 0, length);
+                }
+            } finally {
+                if (inStream != null) {
+                    inStream.close();
+                }
+                if (outStream != null) {
+                    outStream.close();
+                }
+            }
+        } else {
+            BufferedImage sourceImg = ImageIO.read(sourceUri.toURL());
+            BufferedImage destImg = createResizedCopy(sourceImg, scaledWidth, scaledHeight, conpressionRatio, true);
 
-        ImageWriter imgWrtr = ImageIO.getImageWritersByFormatName("jpg").next();
-        imgWrtr.setOutput(imgOutStrm);
-        ImageWriteParam jpgWrtPrm = imgWrtr.getDefaultWriteParam();
-        jpgWrtPrm.setCompressionMode(JPEGImageWriteParam.MODE_EXPLICIT);
-        jpgWrtPrm.setCompressionQuality(conpressionRatio);
-        
-        imgWrtr.write(null, new IIOImage(destImg, null, null), jpgWrtPrm);
+            ImageOutputStream imgOutStrm = ImageIO.createImageOutputStream(destinationFile);
+
+            ImageWriter imgWrtr = ImageIO.getImageWritersByFormatName("jpg").next();
+            imgWrtr.setOutput(imgOutStrm);
+            ImageWriteParam jpgWrtPrm = imgWrtr.getDefaultWriteParam();
+            jpgWrtPrm.setCompressionMode(JPEGImageWriteParam.MODE_EXPLICIT);
+            jpgWrtPrm.setCompressionQuality(conpressionRatio);
+
+            imgWrtr.write(null, new IIOImage(destImg, null, null), jpgWrtPrm);
+        }
     }
 
     public BufferedImage createResizedCopy(Image originalImage,
@@ -109,7 +135,7 @@ public class ImageResizer {
         if (preserveAlpha) {
             g.setComposite(AlphaComposite.Src);
         }
-        
+
         g.drawImage(originalImage, 0, 0, scaledWidth, scaledHeight, null);
         g.dispose();
         return scaledBI;

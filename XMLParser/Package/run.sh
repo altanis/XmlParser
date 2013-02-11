@@ -13,7 +13,10 @@ ARGUMENTS="file:///home/slaskawiec/work/PRZEMEK/src/git/XMLParser/Package/xml/pr
 " --output-img-height 480"\
 " --constant-amount 99"\
 " --constant-active 1"\
-" --output-img-compression-ratio 0.9"\
+" --output-img-main-compression-ratio 0.9"\
+" --output-img-projection-compression-ratio 1.0"\
+" --output-img-elevation-compression-ratio 1.0"\
+" --output-img-location-compression-ratio 1.0"\
 " --output-directory-prefix p"
 
 echo "PROGRAM ARGUMENTS: $ARGUMENTS"
