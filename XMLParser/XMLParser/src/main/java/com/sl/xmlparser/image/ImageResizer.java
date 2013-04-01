@@ -2,6 +2,8 @@ package com.sl.xmlparser.image;
 
 import com.sl.xmlparser.config.Configuration;
 import com.sl.xmlparser.model.ProjectModel;
+import sun.awt.X11.XKeySymConstants;
+
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,14 +44,18 @@ public class ImageResizer {
         }
 
         for (int i = 0; i < listOfModels.size(); ++i) {
-            File imgDirectory = new File(outputDirectory, configuration.getOutputDirectoryPrefix() + Integer.toString(i));
+            File imgDirectory = new File(outputDirectory,
+                    configuration.getOutputDirectoryPrefix() + Integer.toString(i));
             imgDirectory.mkdir();
 
             for (String imgMain : listOfModels.get(i).getImgMain()) {
                 File src = new File(String.format(configuration.getImgMainUriTemplateContant(), imgMain));
                 if (src.exists()) {
                     File dst = new File(imgDirectory, imgMain);
-                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgMainCompressionRatio());
+                    resizeAndSave(src.toURI(), dst, configuration.getOutputCropImgWidth(),
+                            configuration.getOutputCropImgHeight(),
+                            configuration.getOutputImgWidth(),
+                            configuration.getOutputImgHeight(), configuration.getOutputImgMainCompressionRatio());
                 } else {
                     logger.log(Level.WARNING, "Image {0} does not exist", src);
                 }
@@ -58,7 +65,10 @@ public class ImageResizer {
                 File src = new File(String.format(configuration.getImgProjectionUriTemplateContant(), imgProjection));
                 if (src.exists()) {
                     File dst = new File(imgDirectory, imgProjection);
-                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgProjectionRatio());
+                    resizeAndSave(src.toURI(), dst, configuration.getOutputCropImgWidth(),
+                            configuration.getOutputCropImgHeight(),
+                            configuration.getOutputImgWidth(),
+                            configuration.getOutputImgHeight(), configuration.getOutputImgProjectionRatio());
                 } else {
                     logger.log(Level.WARNING, "Image {0} does not exist", src);
                 }
@@ -68,7 +78,10 @@ public class ImageResizer {
                 File src = new File(String.format(configuration.getImgLocationUriTemplateContant(), imgLocation));
                 if (src.exists()) {
                     File dst = new File(imgDirectory, imgLocation);
-                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgLocationCompressionRatio());
+                    resizeAndSave(src.toURI(), dst, configuration.getOutputCropImgWidth(),
+                            configuration.getOutputCropImgHeight(),
+                            configuration.getOutputImgWidth(),
+                            configuration.getOutputImgHeight(), configuration.getOutputImgLocationCompressionRatio());
                 } else {
                     logger.log(Level.WARNING, "Image {0} does not exist", src);
                 }
@@ -78,7 +91,10 @@ public class ImageResizer {
                 File src = new File(String.format(configuration.getImgElevationUriTemplateContant(), imgElevation));
                 if (src.exists()) {
                     File dst = new File(imgDirectory, imgElevation);
-                    resizeAndSave(src.toURI(), dst, configuration.getOutputImgWidth(), configuration.getOutputImgHeight(), configuration.getOutputImgElevationCompressionRatio());
+                    resizeAndSave(src.toURI(), dst, configuration.getOutputCropImgWidth(),
+                            configuration.getOutputCropImgHeight(),
+                            configuration.getOutputImgWidth(),
+                            configuration.getOutputImgHeight(), configuration.getOutputImgElevationCompressionRatio());
                 } else {
                     logger.log(Level.WARNING, "Image {0} does not exist", src);
                 }
@@ -86,8 +102,12 @@ public class ImageResizer {
         }
     }
 
-    public void resizeAndSave(URI sourceUri, File destinationFile, int scaledWidth, int scaledHeight, float conpressionRatio) throws IOException {
-        logger.log(Level.INFO, "Resizing image from URL {0} and saving to {1}. Resizing to {2} x {3}. Compression ratio: {4}", new Object[]{sourceUri.toURL(), destinationFile, scaledWidth, scaledHeight, conpressionRatio});
+    public void resizeAndSave(URI sourceUri, File destinationFile, int cropWidth,
+                              int cropHeight, int scaledWidth, int scaledHeight,
+                              float conpressionRatio) throws IOException {
+        logger.log(Level.INFO,
+                "Resizing image from URL {0} and saving to {1}. Resizing to {2} x {3}. Compression ratio: {4}",
+                new Object[]{ sourceUri.toURL(), destinationFile, scaledWidth, scaledHeight, conpressionRatio });
 
         if (conpressionRatio >= 1.0f) {
             InputStream inStream = null;
@@ -110,8 +130,20 @@ public class ImageResizer {
                 }
             }
         } else {
+
             BufferedImage sourceImg = ImageIO.read(sourceUri.toURL());
-            BufferedImage destImg = createResizedCopy(sourceImg, scaledWidth, scaledHeight, conpressionRatio, true);
+
+            if (scaledHeight < 0) {
+                scaledHeight = sourceImg.getHeight();
+            }
+
+            if (scaledWidth < 0) {
+                scaledWidth = sourceImg.getWidth();
+            }
+
+            BufferedImage destImg = createResizedCopy(sourceImg, cropWidth, cropHeight, scaledWidth, scaledHeight,
+                    conpressionRatio,
+                    true);
 
             ImageOutputStream imgOutStrm = ImageIO.createImageOutputStream(destinationFile);
 
@@ -120,15 +152,28 @@ public class ImageResizer {
             ImageWriteParam jpgWrtPrm = imgWrtr.getDefaultWriteParam();
             jpgWrtPrm.setCompressionMode(JPEGImageWriteParam.MODE_EXPLICIT);
             jpgWrtPrm.setCompressionQuality(conpressionRatio);
+            jpgWrtPrm.setProgressiveMode(ImageWriteParam.MODE_COPY_FROM_METADATA);
 
             imgWrtr.write(null, new IIOImage(destImg, null, null), jpgWrtPrm);
         }
     }
 
-    public BufferedImage createResizedCopy(Image originalImage,
-            int scaledWidth, int scaledHeight, float compressionRatio,
-            boolean preserveAlpha) {
-        logger.log(Level.INFO, "Resizing image to {0} x {1}", new Object[]{scaledWidth, scaledHeight});
+    public BufferedImage createResizedCopy(BufferedImage originalImage, int cropWidth, int cropHeight,
+                                           int scaledWidth, int scaledHeight, float compressionRatio,
+                                           boolean preserveAlpha) {
+        logger.log(Level.INFO, "Resizing image to {0} x {1}", new Object[]{ scaledWidth, scaledHeight });
+        logger.log(Level.INFO, "Crop size image to {0} x {1}", new Object[]{ cropWidth, cropHeight });
+
+        if (cropWidth > 0 || cropHeight > 0) {
+            if(cropHeight > originalImage.getHeight()) {
+                cropHeight = originalImage.getHeight();
+            }
+            if(cropWidth > originalImage.getWidth()) {
+                cropWidth = originalImage.getWidth();
+            }
+            originalImage = originalImage.getSubimage(0, 0, cropWidth, cropHeight);
+        }
+
         int imageType = preserveAlpha ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
         BufferedImage scaledBI = new BufferedImage(scaledWidth, scaledHeight, imageType);
         Graphics2D g = scaledBI.createGraphics();

@@ -106,22 +106,44 @@ public class Configuration {
     
     @Option(name = "--output-img-height", usage = "Height of the resized image")
     private Integer outputImgHeight = 480;
-    
+
+    @Option(name = "--output-crop-img-width", usage = "Width of the resized image")
+    private Integer outputCropImgWidth = -1;
+
+    @Option(name = "--output-crop-img-height", usage = "Height of the resized image")
+    private Integer outputCropImgHeight = -1;
+
     @Option(name = "--output-img-main-compression-ratio", usage = "JPG Compression ratio")
-    private Float outputImgMainCompressionRatio = 0.8f;
-    
+    private Float outputImgMainCompressionRatio = 0.97f;
+
     @Option(name = "--output-img-location-compression-ratio", usage = "JPG Compression ratio")
-    private Float outputImgLocationCompressionRatio = 1.0f;
-    
+    private Float outputImgLocationCompressionRatio = 0.97f;
+
     @Option(name = "--output-img-elevation-compression-ratio", usage = "JPG Compression ratio")
     private Float outputImgElevationCompressionRatio = 1.0f;
-    
+
     @Option(name = "--output-img-projection-compression-ratio", usage = "JPG Compression ratio")
     private Float outputImgProjectionRatio = 1.0f;
-    
+
     @Argument(index = 0, required = true, usage = "Input XML URI")
     private String inputXmlFile;
-    
+
+    public Integer getOutputCropImgHeight() {
+        return outputCropImgHeight;
+    }
+
+    public void setOutputCropImgHeight(Integer outputCropImgHeight) {
+        this.outputCropImgHeight = outputCropImgHeight;
+    }
+
+    public Integer getOutputCropImgWidth() {
+        return outputCropImgWidth;
+    }
+
+    public void setOutputCropImgWidth(Integer outputCropImgWidth) {
+        this.outputCropImgWidth = outputCropImgWidth;
+    }
+
     public Integer getOutputImgWidth() {
         return outputImgWidth;
     }

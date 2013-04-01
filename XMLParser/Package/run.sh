@@ -2,6 +2,8 @@
 
 JAR_NAME='XMLParser-1.0-SNAPSHOT-jar-with-dependencies.jar'
 
+
+
 ARGUMENTS="file:///home/slaskawiec/work/PRZEMEK/src/git/XMLParser/Package/xml/projekty_offline_mod_fixed.xml"\
 " --output-directory ./output"\
 " --output-csv-name index.csv"\
@@ -11,12 +13,14 @@ ARGUMENTS="file:///home/slaskawiec/work/PRZEMEK/src/git/XMLParser/Package/xml/pr
 " --constant-img-elevation-uri-template ./images/elewacje/%s"\
 " --output-img-width 640"\
 " --output-img-height 480"\
+" --output-crop-img-width 957"\
+" --output-crop-img-height 720"\
 " --constant-amount 99"\
 " --constant-active 1"\
 " --output-img-main-compression-ratio 0.9"\
-" --output-img-projection-compression-ratio 1.0"\
-" --output-img-elevation-compression-ratio 1.0"\
-" --output-img-location-compression-ratio 1.0"\
+" --output-img-projection-compression-ratio 0.9"\
+" --output-img-elevation-compression-ratio 0.9"\
+" --output-img-location-compression-ratio 0.9"\
 " --output-directory-prefix p"
 
 echo "PROGRAM ARGUMENTS: $ARGUMENTS"
